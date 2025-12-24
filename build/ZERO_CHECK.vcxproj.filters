@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\fizik_quest\build\CMakeFiles\a5b5c9aa223be7f19a400cfba4c50da2\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F5F20B14-6D56-30AA-80EF-84535A2B4595}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

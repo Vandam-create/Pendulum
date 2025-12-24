@@ -1,0 +1,3 @@
+C:/fizik_quest/build/CMakeFiles/pendulum.dir
+C:/fizik_quest/build/CMakeFiles/ALL_BUILD.dir
+C:/fizik_quest/build/CMakeFiles/ZERO_CHECK.dir
