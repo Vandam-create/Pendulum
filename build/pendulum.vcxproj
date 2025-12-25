@@ -120,13 +120,27 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>Копируем DLL файлы SFML...</Message>
+      <Message>		</Message>
       <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-graphics-3.dll C:/fizik_quest/build/Debug
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-graphics-d-3.dll C:/fizik_quest/build/Debug
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-window-3.dll C:/fizik_quest/build/Debug
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-window-d-3.dll C:/fizik_quest/build/Debug
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-system-3.dll C:/fizik_quest/build/Debug
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-system-d-3.dll C:/fizik_quest/build/Debug
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -136,7 +150,7 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -190,13 +204,27 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>Копируем DLL файлы SFML...</Message>
+      <Message>		</Message>
       <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-graphics-3.dll C:/fizik_quest/build/Release
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-graphics-d-3.dll C:/fizik_quest/build/Release
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-window-3.dll C:/fizik_quest/build/Release
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-window-d-3.dll C:/fizik_quest/build/Release
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-system-3.dll C:/fizik_quest/build/Release
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-system-d-3.dll C:/fizik_quest/build/Release
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -206,7 +234,7 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -260,13 +288,27 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>Копируем DLL файлы SFML...</Message>
+      <Message>		</Message>
       <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-graphics-3.dll C:/fizik_quest/build/MinSizeRel
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-graphics-d-3.dll C:/fizik_quest/build/MinSizeRel
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-window-3.dll C:/fizik_quest/build/MinSizeRel
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-window-d-3.dll C:/fizik_quest/build/MinSizeRel
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-system-3.dll C:/fizik_quest/build/MinSizeRel
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-system-d-3.dll C:/fizik_quest/build/MinSizeRel
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -276,7 +318,7 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -329,13 +371,27 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>Копируем DLL файлы SFML...</Message>
+      <Message>		</Message>
       <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-graphics-3.dll C:/fizik_quest/build/RelWithDebInfo
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-graphics-d-3.dll C:/fizik_quest/build/RelWithDebInfo
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-window-3.dll C:/fizik_quest/build/RelWithDebInfo
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-window-d-3.dll C:/fizik_quest/build/RelWithDebInfo
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:\Degree_1\SFML_lib\SFML-3.0.2/bin/sfml-system-3.dll C:/fizik_quest/build/RelWithDebInfo
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Degree_1/SFML_lib/SFML-3.0.2/bin/sfml-system-d-3.dll C:/fizik_quest/build/RelWithDebInfo
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -345,7 +401,7 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-graphics-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-window-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\sfml-system-d.lib;C:\Degree_1\SFML_lib\SFML-3.0.2\lib\freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -420,8 +476,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\fizik_quest\main.cpp" />
-    <ClCompile Include="C:\fizik_quest\physics_engine.cpp" />
+    <ClCompile Include="C:\fizik_quest\src\main.cpp" />
+    <ClCompile Include="C:\fizik_quest\src\physics_engine.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
