@@ -42,6 +42,7 @@ find_library(SFML_SYSTEM_LIB
 # Указываем исходные файлы проекта
 add_executable(pendulum
     main.cpp
+    physics_engine.cpp
 )
 
 target_link_libraries(pendulum

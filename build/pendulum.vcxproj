@@ -421,6 +421,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\fizik_quest\main.cpp" />
+    <ClCompile Include="C:\fizik_quest\physics_engine.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
