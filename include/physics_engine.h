@@ -15,6 +15,8 @@ struct Particle{
     bool fixed;
 
     void setMass(double mass) {
+
+        std::cout<<mass;
         if (mass <= 0.0) {
             inv_mass = 0.0;
         } else {
@@ -25,11 +27,15 @@ struct Particle{
         }
     }
 
-    Particle(const Vec2d pos = {0, 0}, double mass = 1.0, bool is_fixed = false)
-        : position(pos), predicted_position(pos), velocity(0, 0), fixed(is_fixed) {
+    Particle(const Vec2d pos = {0, 0}, double mass = 1.0, Vec2d vel = {0 , 0}, bool is_fixed = false)
+        : position(pos), predicted_position(pos), velocity(vel), fixed(is_fixed) {
         setMass(mass);
+
+        std::cout<<"\n"<<velocity.x<< " "<< velocity.y<<"\n";
     }
     
+    void set_velocity(Vec2d vel){velocity = vel;}
+
     void applyForce(const Vec2d& force, double dt) {
         if (!fixed) {
             velocity += force * inv_mass * dt;
@@ -59,6 +65,8 @@ struct Constraint {
     bool contains(size_t idx) const {
         return (particle1_idx == idx) || (particle2_idx == idx);
     }
+
+    void getIndexes(size_t& i1, size_t& i2) const {i1 = particle1_idx; i2 = particle2_idx;}
 };
 
 class PhysicsEngine {
@@ -66,20 +74,20 @@ private:
     std::vector<Particle> particles;
     std::vector<Constraint> constraints;
     
-    Vec2d gravity{0.0, 100.0};  // Гравитация в пикселях/с² ???
-    double time_step = 0.016;   // ~60 FPS
+    Vec2d gravity{0.0, 100.0};  // Гравитация в пикселях/с² позже надо будет чтото сделать с этим ужасом
+    double time_step = 0.016;
     double current_time = 0.0;
     int solver_iterations = 10;
     double damping = 0;
     
 public:
     PhysicsEngine() = default;
-    
+    PhysicsEngine(PhysicsEngine &eng) = default;
+
     PhysicsEngine(const Vec2d& grav, double dt, int iter, double damp = 0)
         : gravity(grav), time_step(dt), solver_iterations(iter), damping(damp) {}
     
     //запрещаем копирование
-    PhysicsEngine(const PhysicsEngine&) = delete;
     PhysicsEngine& operator=(const PhysicsEngine&) = delete;
     
     //разрешаем перемещение
@@ -87,8 +95,8 @@ public:
     PhysicsEngine& operator=(PhysicsEngine&&) = default;
     
     //создание частицы
-    size_t createParticle(const Vec2d& position, double mass = 1.0, bool fixed = false) {
-        particles.emplace_back(position, mass, fixed);
+    size_t createParticle(const Vec2d& position, double mass = 1.0, Vec2d velosity = {0, 0}, bool fixed = false) {
+        particles.emplace_back(position, mass, velosity, fixed);
         return particles.size() - 1;
     }
     
@@ -107,6 +115,7 @@ public:
     const Particle& getParticle(size_t idx) const { return particles[idx]; }
     size_t getConstraintCount() const { return constraints.size(); }
     const Constraint& getConstraint(size_t idx) const { return constraints[idx]; }
+    int getConstraintCount_with(size_t idx);
     double getTime() const { return current_time; }
     double getTimeStep() const { return time_step; }
     
@@ -115,7 +124,9 @@ public:
     void setTimeStep(double dt) { if (dt > 0.0) time_step = dt; }
     void setSolverIterations(int iter) { if (iter > 0) solver_iterations = iter; }
     void setDamping(double damp) { damping = std::max(0.0, damp); }
-    
+    void setParticle(std::vector<Particle> setter) { particles = setter; }
+    void reset_time(){current_time = 0;}
+
     //очистка
     void clear() {
         particles.clear();

@@ -203,18 +203,6 @@ PendulumSFML_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 PendulumSFML_SOURCE_DIR:STATIC=C:/fizik_quest
 
-//The directory containing a CMake configuration file for SFML.
-SFML_DIR:PATH=C:/Degree_1/SFML_lib/SFML-3.0.2/lib/cmake/SFML
-
-//Path to a library.
-SFML_GRAPHICS_LIB:FILEPATH=C:/Degree_1/SFML_lib/SFML-3.0.2/lib/sfml-graphics.lib
-
-//Path to a library.
-SFML_SYSTEM_LIB:FILEPATH=C:/Degree_1/SFML_lib/SFML-3.0.2/lib/sfml-system.lib
-
-//Path to a library.
-SFML_WINDOW_LIB:FILEPATH=C:/Degree_1/SFML_lib/SFML-3.0.2/lib/sfml-window.lib
-
 
 ########################
 # INTERNAL cache entries

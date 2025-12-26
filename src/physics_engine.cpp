@@ -61,7 +61,19 @@ void PhysicsEngine::removeParticle(size_t idx) {
         if (constraint.particle2_idx > idx) constraint.particle2_idx--;
     }
 }
-
+int PhysicsEngine::getConstraintCount_with(size_t idx){
+    if (idx >= particles.size()) return 0;
+    int count = 0;
+    //удаляем связанные связи
+    auto it = constraints.begin();
+    while (it != constraints.end()) {
+        if (it->contains(idx)) {
+            count++;
+        }
+        ++it;
+    }
+    return count;
+}
 void PhysicsEngine::createConstraint(size_t idx1, size_t idx2, double length, double stiffness) {
     if (idx1 >= particles.size() || idx2 >= particles.size()) {
         throw std::out_of_range("Invalid particle index");
@@ -95,6 +107,7 @@ void PhysicsEngine::step() {
     //шаг 2: Предсказываем позиции(без связей)
     for (auto& particle : particles) {
         particle.predicted_position = particle.position + particle.velocity * time_step;
+
     }
     
     //шаг 3: Решаем связи (корректируем предсказанные позиции)
@@ -103,6 +116,7 @@ void PhysicsEngine::step() {
             constraint.solve(particles);
         }
     }
+    
     
     //шаг 4: Обновляем позиции и вычисляем новые скорости
     for (auto& particle : particles) {
