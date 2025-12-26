@@ -18,7 +18,7 @@ void Constraint::solve(std::vector<Particle>& particles) const {
     double current_len = std::sqrt(current_len_sq);
     double stretch = current_len - target_length;
     
-    if (std::abs(stretch) < 1e-9) return;
+    if (std::abs(stretch) < 1e-100) return;
     
     Vec2d direction = delta / current_len;
     

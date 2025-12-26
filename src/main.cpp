@@ -3,11 +3,12 @@
 #include "../include/physics_engine.h"
 #include "../include/pendulum.h"
 #include "../include/Modal_win.h"
+#include "../include/visual_config.h"
 
 int main() {
 
     
-    sf::RenderWindow window(sf::VideoMode({1000, 800}), "Pendulum");
+    sf::RenderWindow window(sf::VideoMode({Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}), "Pendulum");
     window.setFramerateLimit(60);
     
     PhysicsEngine engine(Vec2d(0, 300.0), 0.016, 10, 0);
@@ -15,7 +16,10 @@ int main() {
     ModalWindow dialog(engine);
     
     
-    pendulum.create_firs_part(sf::Vector2f(500, 200), 0, 0, 0, 0, 1);
+    pendulum.create_firs_part(
+        sf::Vector2f(Config::WINDOW_WIDTH * 0.5f,
+                     Config::WINDOW_HEIGHT * 0.25f),
+         0, 0, 0, 0, 1);
 
     bool is_dragging = false;
     size_t drag_from_idx = 0;
@@ -57,9 +61,9 @@ int main() {
                             sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_release->position);
                             const auto& circles = pendulum.get_circles();
 
-                            sf::Vector2f screen_pos = {
-                                (window.getSize().x - dialog.get_size().x)/2,
-                                (window.getSize().y - dialog.get_size().y)/2
+                           sf::Vector2f screen_pos = {
+                                (Config::WINDOW_WIDTH - dialog.get_size().x) * 0.5f,
+                                (Config::WINDOW_HEIGHT - dialog.get_size().y) * 0.5f
                             };
 
                             for (size_t i = 0; i < circles.size(); i++) {
@@ -120,8 +124,8 @@ int main() {
                         sf::Vector2f end_pos = window.mapPixelToCoords(mouse_release->position);
                         
                         sf::Vector2f screen_pos = {
-                            (window.getSize().x - dialog.get_size().x)/2,
-                            (window.getSize().y - dialog.get_size().y)/2
+                            (Config::WINDOW_WIDTH - dialog.get_size().x) * 0.5f,
+                            (Config::WINDOW_HEIGHT - dialog.get_size().y) * 0.5f
                         };
 
                         float length = std::sqrt(

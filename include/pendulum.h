@@ -7,6 +7,7 @@
 #include "physics_engine.h"
 #include "Vec2D.h"
 #include <iostream>
+#include "visual_config.h"
 
 class Pendulum {
 private:
@@ -33,8 +34,8 @@ public:
         line[0].color = sf::Color(255, 200, 100, 180);
         line[1].color = sf::Color(255, 200, 100, 180);
         
-        sf::CircleShape temp_circle(15.0f);
-        temp_circle.setOrigin({15.0f, 15.0f});
+        sf::CircleShape temp_circle(Config::RADIUS);
+        temp_circle.setOrigin({Config::RADIUS, Config::RADIUS});
         temp_circle.setPosition(mouse_pos);
         temp_circle.setFillColor(sf::Color(255, 100, 100, 180));
         
@@ -75,8 +76,8 @@ public:
         size_t new_particle_idx = engine.createParticle(pos, mass, vec_velosity, isfixed);
         default_particles.push_back(Particle(pos, mass, vec_velosity));
         
-        sf::CircleShape circle(15.0f);
-        circle.setOrigin({15.0f, 15.0f});
+        sf::CircleShape circle(Config::RADIUS);
+        circle.setOrigin({Config::RADIUS, Config::RADIUS});
         circle.setPosition(position);
         circle.setFillColor(sf::Color::Red);
         circles.push_back(circle);
@@ -111,10 +112,10 @@ public:
         size_t new_particle_idx = engine.createParticle(pos, mass, {0, 0}, isfixed);
         default_particles.push_back(Particle(pos, mass, {0, 0}));
         
-        sf::CircleShape circle(15.0f);
-        circle.setOrigin({15.0f, 15.0f});
+        sf::CircleShape circle(Config::RADIUS);
+        circle.setOrigin({Config::RADIUS, Config::RADIUS});
         circle.setPosition(position);
-        circle.setFillColor(sf::Color::Red);
+        circle.setFillColor(sf::Color(180, 100, 60));
         circles.push_back(circle);
         
     }
